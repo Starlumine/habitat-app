@@ -40,11 +40,12 @@ class _HomePageState extends State<HomePage> {
     return ValueListenableBuilder<bool>(
       valueListenable: ThemeController().isDarkMode,
       builder: (context, darkMode, _) {
-        final bgColor = darkMode ? Colors.grey[900] : Colors.white;
-        final cardColor = darkMode ? Color(0xFF496C55)! : const Color(0xFFD8E0D0);
+        final bgColor = darkMode ? Colors.grey[900]! : Colors.white;
+        final cardColor = darkMode ? Color(0xFF496C55) : const Color(0xFFA9C6A8);
         final textColor = darkMode ? Colors.white : Colors.black;
         final secondaryTextColor = darkMode ? Colors.white70 : Colors.white;
-        final dottedColor = darkMode ? Color(0xFF344E41) : Color(0xFF344E41);
+        final dottedColor = darkMode ? Color.fromARGB(255, 255, 255, 255) : Color(0xFF344E41);
+        final profileColor = darkMode ? const Color(0xFFA9C6A8) : Color(0xFF496C55);
 
         return SafeArea(
           child: Container(
@@ -68,15 +69,15 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF588157))),
                         ],
                       ),
-                      CircleAvatar(
-                        radius: 21,
-                        backgroundColor: darkMode ? Colors.grey[800] : Colors.black,
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: cardColor,
-                          child: const Icon(Icons.person, color: Colors.white),
-                        ),
-                      ),
+                      // CircleAvatar(
+                      //   radius: 21,
+                      //   backgroundColor: darkMode ? Colors.grey[800] : Colors.black,
+                      //   child: CircleAvatar(
+                      //     radius: 20,
+                      //     backgroundColor: cardColor,
+                      //     child: const Icon(Icons.person, color: Colors.white),
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -150,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                                     : _filteredFriends
                                         .map((friend) => Padding(
                                               padding: const EdgeInsets.only(bottom: 8),
-                                              child: _friendItem(friend, dottedColor, cardColor, textColor),
+                                              child: _friendItem(friend, dottedColor, cardColor, textColor, profileColor),
                                             ))
                                         .toList(),
                               ),
@@ -183,7 +184,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  static Widget _friendItem(String name, Color dottedColor, Color cardColor, Color textColor) {
+  static Widget _friendItem(String name, Color dottedColor, Color cardColor, Color textColor, Color profileColor) {
     return DottedBorder(
       color: dottedColor,
       strokeWidth: 1.2,
@@ -194,7 +195,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         color: cardColor,
         child: ListTile(
-          leading: CircleAvatar(backgroundColor: Color(0xFF496C55), child: Icon(Icons.person, color: Colors.white)),
+          leading: CircleAvatar(backgroundColor: profileColor, child: Icon(Icons.person, color: Colors.white)),
           title: Text(name, style: TextStyle(color: textColor)),
           trailing: Icon(Icons.arrow_forward_ios_rounded, size: 16, color: textColor),
           onTap: () {},

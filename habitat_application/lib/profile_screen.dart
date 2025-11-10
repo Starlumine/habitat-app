@@ -22,9 +22,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       valueListenable: ThemeController().isDarkMode,
       builder: (context, darkMode, _) {
         final bgColor = darkMode ? Colors.black : Colors.white;
-        final headerColor = darkMode ? Colors.grey[850]! : darkGreen;
+        final headerColor = darkMode ? darkGreen : darkGreen;
         final cardColor = darkMode ? Colors.grey[900]! : Colors.white;
-        final sectionColor = darkMode ? Colors.grey[800]! : darkGreen;
+        final sectionColor = darkMode ? darkGreen : darkGreen;
         final textColor = darkMode ? Colors.white : Colors.white;
 
         return Scaffold(

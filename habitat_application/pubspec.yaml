@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_core: ^3.4.0
+  firebase_auth: ^5.3.0       # For authentication
+  cloud_firestore: ^5.4.0     # For polls and data storage
+  firebase_analytics: ^11.6.0 # Optional, already in Gradle
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

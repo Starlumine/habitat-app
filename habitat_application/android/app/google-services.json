@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1041181679576",
+    "project_id": "habitat-app-622dd",
+    "storage_bucket": "habitat-app-622dd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041181679576:android:07972b3490549b84ab1cad",
+        "android_client_info": {
+          "package_name": "com.example.habitat_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvvXyZwmfEWEZruXaIrgUc3sdgcHM8k8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

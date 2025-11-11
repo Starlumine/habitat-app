@@ -2,6 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// Earthy color palette for status indicators
+class EarthyColors {
+  // Expired/Error states - muted brown-red
+  static const Color expiredLight = Color(0xFFD4A574); // Light terracotta
+  static const Color expiredDark = Color(0xFF8B5A3C); // Dark terracotta
+  
+  // Expires soon/Warning - warm amber-brown
+  static const Color warningLight = Color(0xFFD4B896); // Light amber
+  static const Color warningDark = Color(0xFF9D7A5A); // Dark amber
+  
+  // Runoff/Info - muted sage green
+  static const Color infoLight = Color(0xFFB8C5A3); // Light sage
+  static const Color infoDark = Color(0xFF6B7D5A); // Dark sage
+  
+  // Delete/Actions - muted rust
+  static const Color delete = Color(0xFFA67C5A); // Muted rust brown
+}
+
 class GroupDetailScreen extends StatefulWidget {
   final String groupId;
   final String groupName;
@@ -87,6 +105,8 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
       // Show FAB only on Polls tab
       return FloatingActionButton(
         onPressed: () => _showCreatePollDialog(context),
+        backgroundColor: const Color(0xFF588157), // Medium green from theme
+        foregroundColor: Colors.white,
         child: const Icon(Icons.add),
         tooltip: 'Create Poll',
       );
@@ -210,14 +230,14 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                             decoration: BoxDecoration(
-                              color: Colors.blue[100],
+                              color: EarthyColors.infoLight,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
                               'Runoff Poll',
                               style: TextStyle(
                                 fontSize: 11,
-                                color: Colors.blue[700],
+                                color: EarthyColors.infoDark,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -227,7 +247,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.delete_outline, color: Colors.red),
+                  icon: const Icon(Icons.delete_outline, color: EarthyColors.delete),
                   onPressed: () => _showDeletePollDialog(context, poll.id, question),
                   tooltip: 'Delete Poll',
                 ),
@@ -242,20 +262,20 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Colors.red[100],
+                          color: EarthyColors.expiredLight,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.access_time, size: 14, color: Colors.red[700]),
+                            Icon(Icons.access_time, size: 14, color: EarthyColors.expiredDark),
                             const SizedBox(width: 4),
                             Text(
                               'Expired',
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.red[700],
+                                color: EarthyColors.expiredDark,
                               ),
                             ),
                           ],
@@ -269,24 +289,24 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.orange[100],
+                            color: EarthyColors.warningLight,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.schedule, size: 14, color: Colors.orange[700]),
+                              Icon(Icons.schedule, size: 14, color: EarthyColors.warningDark),
                               const SizedBox(width: 4),
                               Text(
                                 'Expires ${_formatExpirationDate(expiresAt.toDate())}',
                                 style: TextStyle(
                                   fontSize: 11,
-                                  color: Colors.orange[700],
+                                  color: EarthyColors.warningDark,
                                 ),
                               ),
                               if (isRunoff && !isExpired) ...[
                                 const SizedBox(width: 4),
-                                Icon(Icons.edit, size: 12, color: Colors.orange[700]),
+                                Icon(Icons.edit, size: 12, color: EarthyColors.warningDark),
                               ],
                             ],
                           ),
@@ -396,7 +416,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                     'Results Final',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.red[700],
+                      color: EarthyColors.expiredDark,
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
                     ),
@@ -740,9 +760,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
 
                     if (question.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please enter a question'),
-                          backgroundColor: Colors.red,
+                        SnackBar(
+                          content: const Text('Please enter a question'),
+                          backgroundColor: EarthyColors.expiredDark,
                         ),
                       );
                       return;
@@ -750,9 +770,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
 
                     if (options.length < 2) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please add at least 2 options'),
-                          backgroundColor: Colors.red,
+                        SnackBar(
+                          content: const Text('Please add at least 2 options'),
+                          backgroundColor: EarthyColors.expiredDark,
                         ),
                       );
                       return;
@@ -816,7 +836,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Error creating poll: $e'),
-                            backgroundColor: Colors.red,
+                            backgroundColor: EarthyColors.expiredDark,
                           ),
                         );
                       }
@@ -859,7 +879,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error voting: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: EarthyColors.expiredDark,
           ),
         );
       }
@@ -886,7 +906,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                 await _deletePoll(pollId);
               },
               style: TextButton.styleFrom(
-                foregroundColor: Colors.red,
+                foregroundColor: EarthyColors.delete,
               ),
               child: const Text('Delete'),
             ),
@@ -918,7 +938,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Error deleting poll: $e'),
-            backgroundColor: Colors.red,
+            backgroundColor: EarthyColors.expiredDark,
           ),
         );
       }
@@ -1013,9 +1033,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                   onPressed: () async {
                     if (selectedDate == null || selectedTime == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please select both date and time'),
-                          backgroundColor: Colors.red,
+                        SnackBar(
+                          content: const Text('Please select both date and time'),
+                          backgroundColor: EarthyColors.expiredDark,
                         ),
                       );
                       return;
@@ -1031,9 +1051,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
 
                     if (expirationDateTime.isBefore(DateTime.now())) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Expiration time must be in the future'),
-                          backgroundColor: Colors.red,
+                        SnackBar(
+                          content: const Text('Expiration time must be in the future'),
+                          backgroundColor: EarthyColors.expiredDark,
                         ),
                       );
                       return;
@@ -1063,7 +1083,7 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Error updating expiration: $e'),
-                            backgroundColor: Colors.red,
+                            backgroundColor: EarthyColors.expiredDark,
                           ),
                         );
                       }

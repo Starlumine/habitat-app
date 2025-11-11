@@ -1,5 +1,18 @@
 // import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'app.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const MyApp());
+  
 import 'screens/receipt_split_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
@@ -13,9 +26,7 @@ import 'theme_controller.dart'; // for syncing dark mode across all screens
 import 'package:flutter/material.dart';
 import 'messaging.dart';  // Make sure this path is correct
 
-void main() {
-  runApp(const ChatApp());
-}
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -35,7 +46,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const Center(child: Text("Votes", style: TextStyle(fontSize: 22))),
+      const HabitatHomePage(),
       const ChatApp(),
       const HomePage(),
       const ReceiptSplitScreen(),

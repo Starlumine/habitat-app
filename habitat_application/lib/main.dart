@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/receipt_split_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 import 'theme_controller.dart'; // for syncing dark mode across all screens
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       const Center(child: Text("Votes", style: TextStyle(fontSize: 22))),
       const Center(child: Text("Chats", style: TextStyle(fontSize: 22))),
       const HomePage(),
-      const Center(child: Text("Bills", style: TextStyle(fontSize: 22))),
+      const ReceiptSplitScreen(),
       const ProfileScreen(),
     ];
 

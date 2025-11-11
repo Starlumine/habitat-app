@@ -58,8 +58,8 @@ class _GroupListScreenState extends State<GroupListScreen> {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             decoration: BoxDecoration(
-              color: const Color(0xFF588157), // full green background
-              borderRadius: BorderRadius.circular(12),
+              color: const Color(0xFF496C55), // full green background
+              //borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

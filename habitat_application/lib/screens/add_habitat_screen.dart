@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'group_detail_screen.dart';
+
 
 class HabitatHomePage extends StatefulWidget {
   const HabitatHomePage({super.key});
@@ -16,10 +18,14 @@ class _HabitatHomePageState extends State<HabitatHomePage> {
       FirebaseFirestore.instance.collection('habitats');
 
   void _createHabitat() {
+    
     showDialog(
+      
       context: context,
       builder: (BuildContext context) {
+        
         return AlertDialog(
+          backgroundColor: Color(0xFFB4C9B4),
           title: const Text('Create Habitat'),
           content: TextField(
             controller: _nameController,
@@ -89,6 +95,7 @@ class _HabitatHomePageState extends State<HabitatHomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          
           title: const Text('Join Habitat'),
           content: TextField(
             controller: _joinCodeController,
@@ -201,21 +208,27 @@ class _HabitatHomePageState extends State<HabitatHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Habitats'),
+        //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Color (0xFF496C55),
+        title: const Text('Habitats', style: TextStyle(color: Colors.white),
+      ),
       ),
       body: Column(
+        
         children: [
           Padding(
+            
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
+                    
                     onPressed: _createHabitat,
-                    icon: const Icon(Icons.add),
-                    label: const Text('Create Habitat'),
+                    icon: const Icon(Icons.add, color: Colors.white ),
+                    label: const Text('Create Habitat', style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: (Color(0xFF3A5A40)),
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
                   ),
@@ -224,9 +237,10 @@ class _HabitatHomePageState extends State<HabitatHomePage> {
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: _joinGroup,
-                    icon: const Icon(Icons.login),
-                    label: const Text('Join Habitat'),
+                    icon: const Icon(Icons.login, color: Colors.white),
+                    label: const Text('Join Habitat', style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: (Color(0xFF3A5A40)),
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
                   ),

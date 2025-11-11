@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/add_habitat_screen.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HabitatHome extends StatelessWidget {
+  const HabitatHome({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,21 @@
+// import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'screens/receipt_split_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 import 'theme_controller.dart'; // for syncing dark mode across all screens
 
-void main() {
-  runApp(const MyApp());
-}
+// void main() {
+//   runApp(const MyApp());
+// }
 
+
+import 'package:flutter/material.dart';
+import 'messaging.dart';  // Make sure this path is correct
+
+void main() {
+  runApp(const ChatApp());
+}
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -28,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       const Center(child: Text("Votes", style: TextStyle(fontSize: 22))),
-      const Center(child: Text("Chats", style: TextStyle(fontSize: 22))),
+      const ChatApp(),
       const HomePage(),
       const ReceiptSplitScreen(),
       const ProfileScreen(),

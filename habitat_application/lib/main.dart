@@ -1,8 +1,12 @@
-// import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'app.dart';
+import 'screens/receipt_split_screen.dart';
+import 'screens/add_habitat_screen.dart';
+import 'home_screen.dart';
+import 'profile_screen.dart';
+import 'messaging.dart';
+import 'theme_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,20 +16,7 @@ void main() async {
   );
 
   runApp(const MyApp());
-  
-import 'screens/receipt_split_screen.dart';
-import 'home_screen.dart';
-import 'profile_screen.dart';
-import 'theme_controller.dart'; // for syncing dark mode across all screens
-
-// void main() {
-//   runApp(const MyApp());
-// }
-
-
-import 'package:flutter/material.dart';
-import 'messaging.dart';  // Make sure this path is correct
-
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -78,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                   icon: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: darkMode ? Color(0xFFA9C6A8): Colors.white,
+                      color: darkMode ? const Color(0xFFA9C6A8) : Colors.white,
                     ),
                     padding: const EdgeInsets.all(10),
                     child: Icon(
@@ -93,7 +84,6 @@ class _MyAppState extends State<MyApp> {
                 const BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
               ],
             ),
-
           ),
         );
       },

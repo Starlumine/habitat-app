@@ -177,8 +177,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Switch(
                           value: ThemeController().isDarkMode.value,
                           onChanged: (_) => ThemeController().toggle(),
-                          activeThumbColor: Colors.black,
-                          activeTrackColor: const Color(0xFFA9C6A8),
+                          thumbColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.selected)) {
+                                return Colors.black;
+                              }
+                              return Colors.grey;
+                            },
+                          ),
+                          trackColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.selected)) {
+                                return const Color(0xFFA9C6A8);
+                              }
+                              return Colors.grey[300]!;
+                            },
+                          ),
                         ),
                       ],
                     )

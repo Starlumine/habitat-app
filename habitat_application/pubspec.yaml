@@ -9,16 +9,17 @@ version: 1.0.0+1
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
-# All dependencies in ONE section - don't duplicate this!
+
 dependencies:
   flutter:
     sdk: flutter
   firebase_core: ^3.4.0
-  firebase_auth: ^5.3.0       # For authentication
-  cloud_firestore: ^5.4.0     # For polls and data storage
-  firebase_analytics: ^11.6.0 # Optional, already in Gradle
+  firebase_auth: ^5.3.0
+  cloud_firestore: ^5.4.0
+  firebase_analytics: ^11.6.0
 
-  
+  device_preview: 1.2.0
+
   # UI Components
  
   
@@ -26,8 +27,7 @@ dependencies:
  
   dotted_border: ^2.1.0
   image_picker: ^1.2.0
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+
   cupertino_icons: ^1.0.8
   shared_preferences: ^2.2.3
 
